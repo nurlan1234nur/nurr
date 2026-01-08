@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Миний Анкет</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 40px 20px;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .cv-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 50px;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            margin: 0 auto 20px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .header .title {
+            font-size: 18px;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+            font-size: 14px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 0;
+        }
+
+        .sidebar {
+            background: #f9f9f9;
+            padding: 50px 35px;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .content {
+            padding: 50px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 14px;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #1a1a1a;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 400;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .skill-bar {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: #1a1a1a;
+            border-radius: 3px;
+        }
+
+        .project-item, .education-item {
+            margin-bottom: 35px;
+            padding-left: 0;
+        }
+
+        .item-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .item-subtitle {
+            color: #666;
+            font-weight: 400;
+            margin-bottom: 5px;
+            font-size: 15px;
+        }
+
+        .item-date {
+            color: #999;
+            font-size: 13px;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .item-description {
+            color: #555;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .tech-stack {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tech-tag {
+            background: #f0f0f0;
+            color: #333;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            border: 1px solid #ddd;
+        }
+
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 14px;
+        }
+
+        .language-item:last-child {
+            border-bottom: none;
+        }
+
+        .language-level {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .interest-tag {
+            background: white;
+            color: #333;
+            padding: 8px 14px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+
+        .about-text {
+            color: #555;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .skill-category {
+            margin-bottom: 25px;
+        }
+
+        .skill-category-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-badge {
+            background: white;
+            color: #333;
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                padding: 40px 30px;
+            }
+
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .sidebar, .content {
+                padding: 30px;
+            }
+        }
+        .profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <div class="header">
+<div class="profile-image">
+    <img src="nur.jpg" alt="nur">
+</div>
+            <h1>ТАНЫ НЭР</h1>
+            <div class="title">4-Р КУРСЫН ОЮУТАН | ПРОГРАММ ХАНГАМЖ ХӨГЖҮҮЛЭЛТ</div>
+            <div class="contact-info">
+                <div class="contact-item">nurlant566@gmail.com</div>
+                <div class="contact-item">+976 8543-2523</div>
+                <div class="contact-item">Улаанбаатар, Монгол</div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="section">
+                    <div class="section-title">Технологи</div>
+                    
+                    <div class="skill-category">
+                        <div class="skill-category-title">Хэл</div>
+                        <div class="skill-list">
+                            <div class="skill-badge">C</div>
+                            <div class="skill-badge">C++</div>
+                            <div class="skill-badge">C#</div>
+                            <div class="skill-badge">Python</div>
+                            <div class="skill-badge">JavaScript</div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-category-title">Framework & Library</div>
+                        <div class="skill-list">
+                            <div class="skill-badge">.NET</div>
+                            <div class="skill-badge">React</div>
+                            <div class="skill-badge">Node.js</div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-category-title">Өгөгдлийн сан</div>
+                        <div class="skill-list">
+                            <div class="skill-badge">SQL Server</div>
+                            <div class="skill-badge">MongoDB</div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-category-title">Бусад</div>
+                        <div class="skill-list">
+                            <div class="skill-badge">Git</div>
+                            <div class="skill-badge">HTML/CSS</div>
+                            <div class="skill-badge">REST API</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Хэл</div>
+                    <div class="language-item">
+                        <span>Монгол</span>
+                        <span class="language-level">Эх хэл</span>
+                    </div>
+                    <div class="language-item">
+                        <span>Англи</span>
+                        <span class="language-level">Дунд</span>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Сонирхол</div>
+                    <div class="interests">
+                        <div class="interest-tag">Программчлал</div>
+                        <div class="interest-tag">Web хөгжүүлэлт</div>
+                        <div class="interest-tag">Шинэ технологи</div>
+                        <div class="interest-tag">Open Source</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="section">
+                    <div class="section-title">Миний тухай</div>
+                    <p class="about-text">
+                        Би 4-р курсын оюутан бөгөөд программ хангамж хөгжүүлэлтийн талаар сонирхолтой. 
+                       Шинэ зүйл сурах, асуудлыг шийдвэрлэх дуртай. Багаар ажиллах, мэдлэгээ хуваалцахад бэлэн. 
+                        Ажлын дадлага эсвэл анхны ажлын байранд орох сонирхолтой байна.
+                    </p>
+                </div>
+                <div class="section">
+                    <div class="section-title">Төслүүд</div>
+                    
+                    <div class="project-item">
+                        <div class="item-title">E-Commerce веб аппликейшн</div>
+                        <div class="item-subtitle">Хувийн төсөл</div>
+                        <div class="item-date">2024 оны 9 сар - 12 сар</div>
+                        <div class="item-description">
+                            Бүрэн ажиллагаатай онлайн худалдааны платформ бүтээсэн. Хэрэглэгч бүртгэл, 
+                            бүтээгдэхүүн удирдлага, сагс, төлбөрийн систем зэрэг функцуудыг хэрэгжүүлсэн.
+                        </div>
+                        <div class="tech-stack">
+                            <div class="tech-tag">React</div>
+                            <div class="tech-tag">Node.js</div>
+                            <div class="tech-tag">MongoDB</div>
+                            <div class="tech-tag">REST API</div>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="project-item">
+                        <div class="item-title">Оюутны удирдлагын систем</div>
+                        <div class="item-subtitle">Их сургуулийн төсөл</div>
+                        <div class="item-date">2024 оны 3 сар - 6 сар</div>
+                        <div class="item-description">
+                            Desktop аппликейшн бүтээж, оюутны мэдээлэл бүртгэх, дүн оруулах, 
+                            тайлан гаргах зэрэг үйл ажиллагааг автоматжуулсан. Багаараа ажилласан.
+                        </div>
+                        <div class="tech-stack">
+                            <div class="tech-tag">C#</div>
+                            <div class="tech-tag">.NET</div>
+                            <div class="tech-tag">SQL Server</div>
+                            <div class="tech-tag">WPF</div>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="item-title">Өгөгдөл боловсруулах скрипт</div>
+                        <div class="item-subtitle">Хувийн төсөл</div>
+                        <div class="item-date">2023 оны 11 сар</div>
+                        <div class="item-description">
+                            Python ашиглан том хэмжээний өгөгдлийг боловсруулах, цэвэрлэх, 
+                            визуализаци хийх скрипт бичсэн. Pandas, Matplotlib ашигласан.
+                        </div>
+                        <div class="tech-stack">
+                            <div class="tech-tag">Python</div>
+                            <div class="tech-tag">Pandas</div>
+                            <div class="tech-tag">Matplotlib</div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="section">
+                    <div class="section-title">Боловсрол</div>
+                    <div class="education-item">
+                        <div class="item-title">Компьютерын шинжлэх ухааны бакалавр</div>
+                        <div class="item-subtitle">Монголын Их Сургууль</div>
+                        <div class="item-date">2021 - 2025 (4-р курс)</div>
+                        <div class="item-description">
+                            Мэдээллийн технологийн чиглэлээр суралцаж байна. Программ хангамж хөгжүүлэлт, 
+                            өгөгдлийн бүтэц, алгоритм, объект хандалтат программчлал, вэб технологи зэрэг 
+                            хичээлүүдийг судалсан. GPA: 3.5/4.0
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Нэмэлт мэдээлэл</div>
+                    <div class="item-description">
+                        • GitHub дээр өөрийн төслүүдээ байршуулдаг<br>
+                        • Online курсууд үзэж, өөрөө суралцах дуртай<br>
+                        • Шинэ технологи туршиж үзэхийг хүсдэг<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
